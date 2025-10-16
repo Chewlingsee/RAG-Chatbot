@@ -19,7 +19,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-client = chromadb.PersistentClient(path="/Users/User/Desktop/RAG-Chatbot/chromadb")
+client = chromadb.PersistentClient(path=os.path.join(os.getcwd(), "chromadb"))
 collection = client.get_or_create_collection(name="chroma.sqlite3")
 
 collection.delete(where={"source": "chromadb"})
@@ -332,4 +332,5 @@ with st.sidebar:
     if st.button("New conversation"):
         st.session_state.memory.clear()
         st.session_state.chat_history = []
+
         st.rerun()
